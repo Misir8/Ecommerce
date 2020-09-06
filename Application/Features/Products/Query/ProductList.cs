@@ -23,9 +23,11 @@ namespace Application.Features.Products.Query
     {
         public class ProductEnvelope
         {
-            public List<ProductReturnDto> ProductReturnDtos { get; set; }
+            public List<ProductReturnDto> Data { get; set; }
             public int ProductCount { get; set; }
             public int TotalPages { get; set; }
+            public int Page { get; set; }
+            public int PageSize { get; set; }
         }
         public class Query:IRequest<ProductEnvelope>
         {
@@ -44,7 +46,7 @@ namespace Application.Features.Products.Query
             public string Brand { get; set; }
             public ProductSortState SortState { get; set; }
         }
-        
+
         public class Handler: IRequestHandler<Query, ProductEnvelope>
         {
             private readonly DataContext _context;
@@ -57,7 +59,7 @@ namespace Application.Features.Products.Query
             }
             public async Task<ProductEnvelope> Handle(Query request, CancellationToken cancellationToken)
             {
-                
+
                 var queryable = request.Search == null && request.Brand == null
                     ? _context.Products.Include(x => x.ProductBrand)
                         .Include(x => x.ProductType).AsQueryable()
@@ -80,9 +82,11 @@ namespace Application.Features.Products.Query
                 var totalPages = (int)Math.Ceiling(sortQueryable.Count() / (float)request.Size);
                 return new ProductEnvelope
                 {
-                    ProductReturnDtos = _mapper.Map<List<Product>, List<ProductReturnDto>>(products),
+                    Data = _mapper.Map<List<Product>, List<ProductReturnDto>>(products),
                     ProductCount = sortQueryable.Count(),
-                    TotalPages = totalPages
+                    TotalPages = totalPages,
+                    Page = request.Page,
+                    PageSize = request.Size
                 };
             }
         }
