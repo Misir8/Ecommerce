@@ -1,0 +1,16 @@
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Application.dll
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Persistence.dll
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Application.pdb
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\bin\Debug\netcoreapp3.1\Persistence.pdb
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Users\PREDATOR\Desktop\file\Skinet\Ecommerce\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
