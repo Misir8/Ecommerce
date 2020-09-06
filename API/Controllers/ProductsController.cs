@@ -13,9 +13,10 @@ namespace API.Controllers
     {
         
         [HttpGet]
-        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync(int page = 1, int size = 10, string search = null)
+        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync(string search , string brand,
+            int page = 1, int size = 10, ProductSortState sortState = ProductSortState.NameAsc )
         {
-            return await Mediator.Send(new ProductList.Query(page, size, search));
+            return await Mediator.Send(new ProductList.Query(page, size, search, brand, sortState));
         }
 
         [HttpGet("{id}")]

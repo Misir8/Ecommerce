@@ -12,6 +12,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Products.Query
 {
+    public enum ProductSortState
+    {
+        NameAsc,
+        NameDesc,
+        PriceAsc,
+        PriceDesc
+    }
     public class ProductList
     {
         public class ProductEnvelope
@@ -22,16 +29,20 @@ namespace Application.Features.Products.Query
         }
         public class Query:IRequest<ProductEnvelope>
         {
-            public Query(int page, int size, string search)
+            public Query(int page, int size, string search, string brand, ProductSortState sortState)
             {
                 Page = page;
                 Size = size;
                 Search = search;
+                Brand = brand;
+                SortState = sortState;
             }
 
-            public int Page { get; set; } 
+            public int Page { get; set; }
             public int Size { get; set; }
             public string Search { get; set; }
+            public string Brand { get; set; }
+            public ProductSortState SortState { get; set; }
         }
         
         public class Handler: IRequestHandler<Query, ProductEnvelope>
@@ -46,17 +57,33 @@ namespace Application.Features.Products.Query
             }
             public async Task<ProductEnvelope> Handle(Query request, CancellationToken cancellationToken)
             {
-                var queryable = request.Search == null
-                    ? _context.Products.AsQueryable()
-                    : _context.Products.Where(x => x.Name.ToLower().Contains(request.Search.ToLower())).AsQueryable();
+                
+                var queryable = request.Search == null && request.Brand == null
+                    ? _context.Products.Include(x => x.ProductBrand)
+                        .Include(x => x.ProductType).AsQueryable()
+                    : _context.Products.Include(x => x.ProductBrand)
+                        .Include(x => x.ProductType)
+                        .Where(x => request.Search != null && request.Brand != null? 
+                            x.Name.ToLower().Contains( request.Search.ToLower()) &&  x.ProductBrand.Name.ToLower().Contains( request.Brand.ToLower()):
+                            request.Brand != null? x.ProductBrand.Name.ToLower().Contains( request.Brand.ToLower()):
+                            x.Name.ToLower().Contains(request.Search))
+                            .AsQueryable();
 
-                var products = await queryable.Skip((request.Page - 1) * request.Page)
+                var sortQueryable = request.SortState switch
+                {
+                    ProductSortState.NameDesc => queryable.OrderByDescending(x => x.Name),
+                    ProductSortState.PriceAsc => queryable.OrderBy(x => x.Price),
+                    ProductSortState.PriceDesc => queryable.OrderByDescending(x => x.Price),
+                    _ => queryable.OrderBy(x => x.Name),
+                };
+
+                var products = await sortQueryable.Skip((request.Page - 1) * request.Page)
                     .Take(request.Size).ToListAsync();;
-                var totalPages = (int)Math.Ceiling(queryable.Count() / (float)request.Size);
+                var totalPages = (int)Math.Ceiling(sortQueryable.Count() / (float)request.Size);
                 return new ProductEnvelope
                 {
                     ProductReturnDtos = _mapper.Map<List<Product>, List<ProductReturnDto>>(products),
-                    ProductCount = queryable.Count(),
+                    ProductCount = sortQueryable.Count(),
                     TotalPages = totalPages
                 };
             }
