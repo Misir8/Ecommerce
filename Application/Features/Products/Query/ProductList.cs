@@ -63,10 +63,8 @@ namespace Application.Features.Products.Query
                         .Include(x => x.ProductType).AsQueryable()
                     : _context.Products.Include(x => x.ProductBrand)
                         .Include(x => x.ProductType)
-                        .Where(x => request.Search != null && request.Brand != null? 
-                            x.Name.ToLower().Contains( request.Search.ToLower()) &&  x.ProductBrand.Name.ToLower().Contains( request.Brand.ToLower()):
-                            request.Brand != null? x.ProductBrand.Name.ToLower().Contains( request.Brand.ToLower()):
-                            x.Name.ToLower().Contains(request.Search))
+                        .Where(x => (request.Search != null ? x.Name.ToLower().Contains(request.Search.ToLower()) : x.Name != null) &&
+                                    (request.Brand != null? x.ProductBrand.Name.ToLower().Contains(request.Brand.ToLower()) : x.ProductBrand.Name != null))
                             .AsQueryable();
 
                 var sortQueryable = request.SortState switch
