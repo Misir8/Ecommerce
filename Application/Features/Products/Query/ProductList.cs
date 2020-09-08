@@ -31,19 +31,22 @@ namespace Application.Features.Products.Query
         }
         public class Query:IRequest<ProductEnvelope>
         {
-            public Query(int page, int size, string search, string brand, ProductSortState sortState)
+            public Query(int page, int size, string search, int? brandId, int? typeId, ProductSortState sortState )
             {
                 Page = page;
                 Size = size;
                 Search = search;
-                Brand = brand;
+                BrandId = brandId;
+                TypeId = typeId;
                 SortState = sortState;
+
             }
 
             public int Page { get; set; }
             public int Size { get; set; }
             public string Search { get; set; }
-            public string Brand { get; set; }
+            public int? BrandId { get; set; }
+            public int? TypeId { get; set; }
             public ProductSortState SortState { get; set; }
         }
 
@@ -60,13 +63,14 @@ namespace Application.Features.Products.Query
             public async Task<ProductEnvelope> Handle(Query request, CancellationToken cancellationToken)
             {
 
-                var queryable = request.Search == null && request.Brand == null
+                var queryable = request.Search == null && request.BrandId == null && request.TypeId == null
                     ? _context.Products.Include(x => x.ProductBrand)
                         .Include(x => x.ProductType).AsQueryable()
                     : _context.Products.Include(x => x.ProductBrand)
                         .Include(x => x.ProductType)
-                        .Where(x => (request.Search != null ? x.Name.ToLower().Contains(request.Search.ToLower()) : x.Name != null) &&
-                                    (request.Brand != null? x.ProductBrand.Name.ToLower().Contains(request.Brand.ToLower()) : x.ProductBrand.Name != null))
+                        .Where(x => (request.Search != null ? x.Name.ToLower().Contains(request.Search.ToLower()) : x != null) &&
+                                    (request.BrandId != null? x.ProductBrand.Id == request.BrandId : x.ProductBrand != null) &&
+                                    (request.TypeId != null? x.ProductType.Id == request.TypeId: x.ProductType != null))
                             .AsQueryable();
 
                 var sortQueryable = request.SortState switch
