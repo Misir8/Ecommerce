@@ -13,10 +13,10 @@ namespace API.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync(string search , int? brandId,
-            int? typeId,int page = 1, int size = 10, ProductSortState sortState = ProductSortState.NameAsc )
+        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync( int? brandId,
+            int? typeId, string sort, string search ,int page = 1, int size = 10 )
         {
-            return await Mediator.Send(new ProductList.Query(page, size, search, brandId, typeId, sortState));
+            return await Mediator.Send(new ProductList.Query(page, size, search, brandId, typeId, sort));
         }
 
         [HttpGet("{id}")]

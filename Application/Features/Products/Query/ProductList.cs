@@ -12,13 +12,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Products.Query
 {
-    public enum ProductSortState
-    {
-        NameAsc,
-        NameDesc,
-        PriceAsc,
-        PriceDesc
-    }
     public class ProductList
     {
         public class ProductEnvelope
@@ -31,14 +24,14 @@ namespace Application.Features.Products.Query
         }
         public class Query:IRequest<ProductEnvelope>
         {
-            public Query(int page, int size, string search, int? brandId, int? typeId, ProductSortState sortState )
+            public Query(int page, int size, string search, int? brandId, int? typeId, string sort )
             {
                 Page = page;
                 Size = size;
                 Search = search;
                 BrandId = brandId;
                 TypeId = typeId;
-                SortState = sortState;
+                Sort = sort;
 
             }
 
@@ -47,7 +40,7 @@ namespace Application.Features.Products.Query
             public string Search { get; set; }
             public int? BrandId { get; set; }
             public int? TypeId { get; set; }
-            public ProductSortState SortState { get; set; }
+            public string Sort { get; set; }
         }
 
         public class Handler: IRequestHandler<Query, ProductEnvelope>
@@ -73,12 +66,13 @@ namespace Application.Features.Products.Query
                                     (request.TypeId != null? x.ProductType.Id == request.TypeId: x.ProductType != null))
                             .AsQueryable();
 
-                var sortQueryable = request.SortState switch
+                var sortQueryable = request.Sort switch
                 {
-                    ProductSortState.NameDesc => queryable.OrderByDescending(x => x.Name),
-                    ProductSortState.PriceAsc => queryable.OrderBy(x => x.Price),
-                    ProductSortState.PriceDesc => queryable.OrderByDescending(x => x.Price),
-                    _ => queryable.OrderBy(x => x.Name),
+                    "nameAsc" => queryable.OrderBy(x => x.Name),
+                    "nameDesc" => queryable.OrderByDescending(x => x.Name),
+                    "priceAsc" => queryable.OrderBy(x => x.Price),
+                    "priceDesc" => queryable.OrderByDescending(x => x.Price),
+                    _ => queryable,
                 };
 
                 var products = await sortQueryable.Skip((request.Page - 1) * request.Page)
