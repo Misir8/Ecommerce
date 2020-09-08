@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Features.Brands.Query;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +12,7 @@ namespace Application.Features.ProductTypes.Query
     {
         public class Query: IRequest<List<ProductType>>
         {
-            
+
         }
         public class Handler:IRequestHandler<Query, List<ProductType>>
         {

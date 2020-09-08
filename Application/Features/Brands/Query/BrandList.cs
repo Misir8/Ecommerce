@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.Entities;
@@ -13,9 +12,9 @@ namespace Application.Features.Brands.Query
     {
         public class Query:IRequest<List<ProductBrand>>
         {
-            
+
         }
-        
+
         public class Handler :IRequestHandler<Query, List<ProductBrand>>
         {
             private readonly DataContext _context;
