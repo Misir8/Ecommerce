@@ -1,16 +1,9 @@
 using API.Middleware;
-using Application.Features.Products.Mapping;
-using Application.Features.Products.Query;
-using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Persistence.Data;
 
 namespace API
 {
@@ -26,14 +19,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddDbContext<DataContext>(opt =>
-                opt.UseInMemoryDatabase(nameof(DataContext)));
-            services.AddMediatR(typeof(ProductList.Handler).Assembly);
-            services.AddAutoMapper(typeof(MappingProfile));
-            services.AddSwaggerGen(opt =>
-                opt.SwaggerDoc("v1", new OpenApiInfo{Title = "E-commerce",Version = "v1"}));
-            services.AddCors();
+            ServiceExtension.ConfigureDependencies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

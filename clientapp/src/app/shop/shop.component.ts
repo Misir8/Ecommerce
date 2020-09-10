@@ -3,6 +3,7 @@ import {ShopService} from './shop.service';
 import {IProduct} from '../shared/models/product';
 import {IBrand} from '../shared/models/brand';
 import {IType} from '../shared/models/Type';
+import {ShopParams} from '../shared/models/shopParams';
 
 @Component({
   selector: 'app-shop',
@@ -10,14 +11,11 @@ import {IType} from '../shared/models/Type';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-
   products: IProduct[];
   brands: IBrand[];
   types: IType[];
-  brandIdSelected: number;
-  typeIdSelected: number;
-  sort: string;
-  search: string;
+  shopParams = new ShopParams();
+  totalCount: number;
   sortOption = [
     {name: "Name: A-Z", value:"nameAsc"},
     {name: "Name: Z-A", value:"nameDesc"},
@@ -33,9 +31,12 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts(){
-    this.shopService.getProducts( this.brandIdSelected, this.typeIdSelected, this.sort, this.search)
+    this.shopService.getProducts( this.shopParams)
       .subscribe((response) =>{
       this.products = response.data;
+      this.shopParams.pageNumber = response.page;
+      this.shopParams.pageSize = response.pageSize;
+      this.totalCount = response.productCount;
     }, error => {
       console.log(error);
     })
@@ -58,23 +59,27 @@ export class ShopComponent implements OnInit {
 
 
   onBrandSelected(brandId: number){
-    this.brandIdSelected = brandId;
+    this.shopParams.brandId = brandId;
     this.getProducts();
   }
   onTypeSelected(typeId: number){
-    this.typeIdSelected = typeId;
+    this.shopParams.typeId = typeId;
     this.getProducts();
   }
   onSortSelected(sort: string){
-    this.sort = sort;
+    this.shopParams.sort = sort;
     this.getProducts();
   }
   onSearch(search: string){
-    this.search = search;
+    this.shopParams.search = search;
     this.getProducts();
   }
   onReset(){
-    this.search = '';
+    this.shopParams.search = '';
+    this.getProducts();
+  }
+  onPageChange(event: any){
+    this.shopParams.pageNumber = event.page;
     this.getProducts();
   }
 }

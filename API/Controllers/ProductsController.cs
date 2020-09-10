@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.Helpers;
 using Application.Features.Brands.Query;
 using Application.Features.Products.Dto;
 using Application.Features.Products.Query;
 using Application.Features.ProductTypes.Query;
 using Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,10 +15,10 @@ namespace API.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync( int? brandId,
-            int? typeId, string sort, string search ,int page = 1, int size = 10 )
+        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync([FromQuery] ShopParams @params)
         {
-            return await Mediator.Send(new ProductList.Query(page, size, search, brandId, typeId, sort));
+            return await Mediator.Send(new ProductList.Query(@params.Page, @params.Size,
+                @params.Search, @params.BrandId, @params.TypeId, @params.Sort));
         }
 
         [HttpGet("{id}")]
