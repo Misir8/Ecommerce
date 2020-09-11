@@ -34,9 +34,8 @@ export class ShopComponent implements OnInit {
     this.shopService.getProducts( this.shopParams)
       .subscribe((response) =>{
       this.products = response.data;
-      this.shopParams.pageNumber = response.page;
-      this.shopParams.pageSize = response.pageSize;
-      this.totalCount = response.productCount;
+      this.shopParams.pageNumber = response.currentPage;
+      this.totalCount = response.count;
     }, error => {
       console.log(error);
     })
@@ -60,10 +59,12 @@ export class ShopComponent implements OnInit {
 
   onBrandSelected(brandId: number){
     this.shopParams.brandId = brandId;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
   onTypeSelected(typeId: number){
     this.shopParams.typeId = typeId;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
   onSortSelected(sort: string){
@@ -72,6 +73,7 @@ export class ShopComponent implements OnInit {
   }
   onSearch(search: string){
     this.shopParams.search = search;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
   onReset(){

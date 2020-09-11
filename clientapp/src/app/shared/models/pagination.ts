@@ -2,8 +2,7 @@
 
 export interface IPagination {
   data: IProduct[];
-  productCount: number;
-  totalPages: number;
-  page: number;
+  count: number;
+  currentPage: number;
   pageSize: number;
 }

@@ -18,7 +18,6 @@
 
     <ItemGroup>
       <Folder Include="Features\Products\Command" />
-      <Folder Include="Pagination" />
     </ItemGroup>
 
 </Project>

@@ -5,6 +5,7 @@ using Application.Features.Brands.Query;
 using Application.Features.Products.Dto;
 using Application.Features.Products.Query;
 using Application.Features.ProductTypes.Query;
+using Application.Pagination;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace API.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<ProductList.ProductEnvelope>> GetAllProductsAsync([FromQuery] ShopParams @params)
+        public async Task<ActionResult<PagedData<ProductReturnDto>>> GetAllProductsAsync([FromQuery] ShopParams @params)
         {
             return await Mediator.Send(new ProductList.Query(@params.Page, @params.Size,
                 @params.Search, @params.BrandId, @params.TypeId, @params.Sort));

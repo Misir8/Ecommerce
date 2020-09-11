@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Features.Products.Dto;
+using Application.Pagination;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -14,15 +15,7 @@ namespace Application.Features.Products.Query
 {
     public class ProductList
     {
-        public class ProductEnvelope
-        {
-            public List<ProductReturnDto> Data { get; set; }
-            public int ProductCount { get; set; }
-            public int TotalPages { get; set; }
-            public int Page { get; set; }
-            public int PageSize { get; set; }
-        }
-        public class Query:IRequest<ProductEnvelope>
+        public class Query:IRequest<PagedData<ProductReturnDto>>
         {
             public Query(int page, int size, string search, int? brandId, int? typeId, string sort )
             {
@@ -34,7 +27,6 @@ namespace Application.Features.Products.Query
                 Sort = sort;
 
             }
-
             public int Page { get; set; }
             public int Size { get; set; }
             public string Search { get; set; }
@@ -43,7 +35,7 @@ namespace Application.Features.Products.Query
             public string Sort { get; set; }
         }
 
-        public class Handler: IRequestHandler<Query, ProductEnvelope>
+        public class Handler: IRequestHandler<Query, PagedData<ProductReturnDto>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -53,7 +45,7 @@ namespace Application.Features.Products.Query
                 _context = context;
                 _mapper = mapper;
             }
-            public async Task<ProductEnvelope> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<PagedData<ProductReturnDto>> Handle(Query request, CancellationToken cancellationToken)
             {
 
                 var queryable = request.Search == null && request.BrandId == null && request.TypeId == null
@@ -75,17 +67,9 @@ namespace Application.Features.Products.Query
                     _ => queryable,
                 };
 
-                var products = await sortQueryable.Skip((request.Page - 1) * request.Page)
-                    .Take(request.Size).ToListAsync();;
-                var totalPages = (int)Math.Ceiling(sortQueryable.Count() / (float)request.Size);
-                return new ProductEnvelope
-                {
-                    Data = _mapper.Map<List<Product>, List<ProductReturnDto>>(products),
-                    ProductCount = sortQueryable.Count(),
-                    TotalPages = totalPages,
-                    Page = request.Page,
-                    PageSize = request.Size
-                };
+                var result =  _mapper.Map<IEnumerable<Product>, IEnumerable<ProductReturnDto>>( await sortQueryable.ToListAsync())
+                    .PagedResult(request.Page, request.Size, sortQueryable.Count());
+                return result;
             }
         }
     }
