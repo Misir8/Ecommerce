@@ -1,7 +1,7 @@
 <div class="card shadow-sm h-100">
-  <img class="img-fluid bg-light" src="{{product.pictureUrl}}" alt="{{product.name}}">
+  <img class="img-fluid bg-light" src="{{product.pictureUrl}}" alt="{{product.name}}" [routerLink]="['/shop', product.id]">
   <div class="card-body d-flex flex-column">
-    <a href="#">
+    <a [routerLink]="['/shop', product.id]">
       <h6 class="text-uppercase">{{product.name}}</h6>
     </a>
     <span class="mb-2">{{product.price | currency}}</span>

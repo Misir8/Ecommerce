@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,7 +46,6 @@ namespace Application.Features.Products.Query
             }
             public async Task<PagedData<ProductReturnDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-
                 var queryable = request.Search == null && request.BrandId == null && request.TypeId == null
                     ? _context.Products.Include(x => x.ProductBrand)
                         .Include(x => x.ProductType).AsQueryable()
@@ -58,8 +56,6 @@ namespace Application.Features.Products.Query
                             (request.BrandId != null? x.ProductBrand.Id == request.BrandId : x.ProductBrand != null) &&
                             (request.TypeId != null? x.ProductType.Id == request.TypeId: x.ProductType != null))
                             .AsQueryable();
-
-
 
                 var sortQueryable = request.Sort switch
                 {
