@@ -8,6 +8,7 @@ using Application.Features.ProductTypes.Query;
 using Application.Pagination;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

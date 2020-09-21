@@ -24,7 +24,6 @@ namespace Application.Features.Products.Query
                 BrandId = brandId;
                 TypeId = typeId;
                 Sort = sort;
-
             }
             public int Page { get; set; }
             public int Size { get; set; }
