@@ -2,26 +2,28 @@
   <div class="row">
 
     <section class="col-3">
-      <h5 class="text-warning ml-3">Sort</h5>
-      <select class="custom-select mb-3" (change)="onSortSelected($event.target.value)">
-        <option
-          selected *ngFor="let sort of sortOption"
-          [value]="sort.value"
-        >{{sort.name}}
-        </option>
-      </select>
+      <ng-container *ngIf="brands && types">
+        <h5 class="text-warning ml-3">Sort</h5>
+        <select class="custom-select mb-3" (change)="onSortSelected($event.target.value)">
+          <option
+            selected *ngFor="let sort of sortOption"
+            [value]="sort.value"
+          >{{sort.name}}
+          </option>
+        </select>
 
-      <h5 class="text-warning ml-3">Brands</h5>
-      <ul class="list-group my-3">
-        <li class="list-group-item "
-            *ngFor="let brand of brands"
-            [class.active]="brand.id === shopParams.brandId"
-            [value]="brand.id"
-            (click)="onBrandSelected(brand.id)"
-        >
-          {{brand.name}}
-        </li>
-      </ul>
+        <h5 class="text-warning ml-3">Brands</h5>
+        <ul class="list-group my-3">
+          <li class="list-group-item "
+              *ngFor="let brand of brands"
+              [class.active]="brand.id === shopParams.brandId"
+              [value]="brand.id"
+              (click)="onBrandSelected(brand.id)"
+          >
+            {{brand.name}}
+          </li>
+        </ul>
+      </ng-container>
 
       <h5 class="text-warning ml-3">Types</h5>
       <ul class="list-group my-3">
