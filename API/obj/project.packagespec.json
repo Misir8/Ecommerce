@@ -6,9 +6,6 @@
     "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\API\\API.csproj",
     "outputPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\API\\obj\\",
     "projectStyle": "PackageReference",
-    "fallbackFolders": [
-      "C:\\Microsoft\\Xamarin\\NuGet"
-    ],
     "originalTargetFrameworks": [
       "netcoreapp3.1"
     ],
