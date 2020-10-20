@@ -23,7 +23,7 @@ namespace API.Middleware
             try
             {
                 await _next(context);
-            } 
+            }
             catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex, _logger);
@@ -37,7 +37,7 @@ namespace API.Middleware
             switch (ex)
             {
                 case RestException re:
-                    logger.LogError(ex, "REST ERROR");
+                    logger.LogWarning(ex, "REST ERROR");
                     errors = re.Errors;
                     context.Response.StatusCode = (int)re.Code;
                     break;
@@ -51,7 +51,7 @@ namespace API.Middleware
             context.Response.ContentType = "application/json";
             if (errors != null)
             {
-                var result = JsonConvert.SerializeObject(new 
+                var result = JsonConvert.SerializeObject(new
                 {
                     errors
                 });

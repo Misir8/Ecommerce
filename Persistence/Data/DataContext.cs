@@ -5,9 +5,8 @@ namespace Persistence.Data
 {
     public class DataContext:DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options)
+        public DataContext(DbContextOptions<DataContext> options):base(options)
         {
-            Database.EnsureCreated();
         }
 
         public DbSet<ProductBrand> ProductBrands { get; set; }
@@ -32,7 +31,7 @@ namespace Persistence.Data
                 new ProductType{ Id = 3, Name = "Boots"},
                 new ProductType{ Id = 4, Name = "Gloves"}
             );
-            
+
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
@@ -148,10 +147,5 @@ namespace Persistence.Data
             );
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseInMemoryDatabase(nameof(DataContext));
-        }
     }
 }

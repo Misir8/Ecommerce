@@ -7,19 +7,14 @@ using Application.Features.Products.Query;
 using Application.Features.ProductTypes.Query;
 using Application.Pagination;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Persistence.Data;
 
 namespace API.Controllers
 {
+    //[Authorize(AuthenticationSchemes = "Bearer")]
     public class ProductsController:BaseController
     {
-        private readonly DataContext _context;
-
-        public ProductsController(DataContext context)
-        {
-            _context = context;
-        }
         [HttpGet]
         public async Task<ActionResult<PagedData<ProductReturnDto>>> GetAllProductsAsync([FromQuery] ShopParams @params)
         {
