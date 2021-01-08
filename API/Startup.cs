@@ -39,9 +39,9 @@ namespace API
         {
             services.AddControllers();
             services.AddDbContext<DataContext>(opt =>
-                opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+                opt.UseMySql(Configuration.GetConnectionString("Default")));
             services.AddDbContext<AppIdentityDbContext>(opt =>
-            opt.UseSqlServer(Configuration.GetConnectionString("IdentityContext")));
+            opt.UseMySql(Configuration.GetConnectionString("IdentityContext")));
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
             services.AddMediatR(typeof(ProductList.Handler).Assembly);
@@ -83,13 +83,13 @@ namespace API
             }
 
             app.UseStaticFiles();
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI(opt => opt.SwaggerEndpoint("/swagger/v1/swagger.json",

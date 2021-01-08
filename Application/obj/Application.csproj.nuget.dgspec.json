@@ -1,39 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Application\\Application.csproj": {}
+    "/home/misir/Desktop/Ecommerce/Application/Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Application\\Application.csproj": {
+    "/home/misir/Desktop/Ecommerce/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Application\\Application.csproj",
+        "projectUniqueName": "/home/misir/Desktop/Ecommerce/Application/Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\PREDATOR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Application\\obj\\",
+        "projectPath": "/home/misir/Desktop/Ecommerce/Application/Application.csproj",
+        "packagesPath": "/home/misir/.nuget/packages/",
+        "outputPath": "/home/misir/Desktop/Ecommerce/Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PREDATOR\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/misir/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj"
+              "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj": {
+                "projectPath": "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj"
               },
-              "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Persistence\\Persistence.csproj"
+              "/home/misir/Desktop/Ecommerce/Persistence/Persistence.csproj": {
+                "projectPath": "/home/misir/Desktop/Ecommerce/Persistence/Persistence.csproj"
               }
             }
           }
@@ -102,30 +98,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.108/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj": {
+    "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj",
+        "projectUniqueName": "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\PREDATOR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\obj\\",
+        "projectPath": "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj",
+        "packagesPath": "/home/misir/.nuget/packages/",
+        "outputPath": "/home/misir/Desktop/Ecommerce/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PREDATOR\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/misir/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -149,6 +141,10 @@
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[3.1.7, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[3.2.4, )"
             }
           },
           "imports": [
@@ -166,37 +162,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.108/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Persistence\\Persistence.csproj": {
+    "/home/misir/Desktop/Ecommerce/Persistence/Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "/home/misir/Desktop/Ecommerce/Persistence/Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\PREDATOR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Persistence\\obj\\",
+        "projectPath": "/home/misir/Desktop/Ecommerce/Persistence/Persistence.csproj",
+        "packagesPath": "/home/misir/.nuget/packages/",
+        "outputPath": "/home/misir/Desktop/Ecommerce/Persistence/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PREDATOR\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/misir/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\PREDATOR\\Desktop\\file\\Skinet\\Ecommerce\\Domain\\Domain.csproj"
+              "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj": {
+                "projectPath": "/home/misir/Desktop/Ecommerce/Domain/Domain.csproj"
               }
             }
           }
@@ -238,7 +230,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.108/RuntimeIdentifierGraph.json"
         }
       }
     }

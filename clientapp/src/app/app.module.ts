@@ -12,6 +12,7 @@ import {ErrorInterceptor} from './core/interceptor/error.interceptor';
 import {LoadingInterceptors} from './core/interceptor/loading.interceptors';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeModule} from './home/home.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HomeModule} from './home/home.module';
     RouterModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    HomeModule
+    HomeModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
